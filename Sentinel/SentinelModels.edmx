@@ -1,0 +1,713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SentinelModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SentinelModelStoreContainer">
+          <EntitySet Name="ActivityTypes" EntityType="SentinelModel.Store.ActivityTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Applications" EntityType="SentinelModel.Store.Applications" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BannedPasswords" EntityType="SentinelModel.Store.BannedPasswords" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Groups" EntityType="SentinelModel.Store.Groups" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Roles" EntityType="SentinelModel.Store.Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserActivities" EntityType="SentinelModel.Store.UserActivities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserApplications" EntityType="SentinelModel.Store.UserApplications" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserGroups" EntityType="SentinelModel.Store.UserGroups" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserProfiles" EntityType="SentinelModel.Store.UserProfiles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserRoles" EntityType="SentinelModel.Store.UserRoles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="SentinelModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_UserActivities_ActivityTypes" Association="SentinelModel.Store.FK_UserActivities_ActivityTypes">
+            <End Role="ActivityTypes" EntitySet="ActivityTypes" />
+            <End Role="UserActivities" EntitySet="UserActivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserActivities_Applications" Association="SentinelModel.Store.FK_UserActivities_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="UserActivities" EntitySet="UserActivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserActivities_Users" Association="SentinelModel.Store.FK_UserActivities_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserActivities" EntitySet="UserActivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserApplications_Applications" Association="SentinelModel.Store.FK_UserApplications_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="UserApplications" EntitySet="UserApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserApplications_Users" Association="SentinelModel.Store.FK_UserApplications_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserApplications" EntitySet="UserApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGroups_Groups" Association="SentinelModel.Store.FK_UserGroups_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="UserGroups" EntitySet="UserGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGroups_Users" Association="SentinelModel.Store.FK_UserGroups_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserGroups" EntitySet="UserGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfiles_Users" Association="SentinelModel.Store.FK_UserProfiles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserProfiles" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRoles_Roles" Association="SentinelModel.Store.FK_UserRoles_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRoles_Users" Association="SentinelModel.Store.FK_UserRoles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ActivityTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsActive" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApplicationKey" Type="nchar" MaxLength="32" />
+          <Property Name="Added" Type="datetime" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="DefaultTimeoutLength" Type="int" />
+        </EntityType>
+        <EntityType Name="BannedPasswords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserActivities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ApplicationId" Type="int" Nullable="false" />
+          <Property Name="ActivityTypeId" Type="int" Nullable="false" />
+          <Property Name="ActivityTime" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="UserApplications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ApplicationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserProfiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IPAddress" Type="nchar" MaxLength="16" />
+          <Property Name="LoginAttempts" Type="int" />
+          <Property Name="IsVerified" Type="int" />
+          <Property Name="Islocked" Type="int" />
+          <Property Name="IsLoggedIn" Type="int" />
+          <Property Name="LastModified" Type="datetime" />
+          <Property Name="LastLogin" Type="datetime" />
+          <Property Name="LoginTime" Type="datetime" />
+          <Property Name="Token" Type="nchar" MaxLength="32" />
+          <Property Name="SecurityPhrase" Type="nvarchar" MaxLength="150" />
+          <Property Name="SecurityImage" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmailAddress" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="Password" Type="nchar" Nullable="false" MaxLength="75" />
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="12" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Created" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <Association Name="FK_UserActivities_ActivityTypes">
+          <End Role="ActivityTypes" Type="SentinelModel.Store.ActivityTypes" Multiplicity="1" />
+          <End Role="UserActivities" Type="SentinelModel.Store.UserActivities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserActivities">
+              <PropertyRef Name="ActivityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserActivities_Applications">
+          <End Role="Applications" Type="SentinelModel.Store.Applications" Multiplicity="1" />
+          <End Role="UserActivities" Type="SentinelModel.Store.UserActivities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserActivities">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserActivities_Users">
+          <End Role="Users" Type="SentinelModel.Store.Users" Multiplicity="1" />
+          <End Role="UserActivities" Type="SentinelModel.Store.UserActivities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserActivities">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserApplications_Applications">
+          <End Role="Applications" Type="SentinelModel.Store.Applications" Multiplicity="1" />
+          <End Role="UserApplications" Type="SentinelModel.Store.UserApplications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserApplications">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserApplications_Users">
+          <End Role="Users" Type="SentinelModel.Store.Users" Multiplicity="1" />
+          <End Role="UserApplications" Type="SentinelModel.Store.UserApplications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserApplications">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGroups_Groups">
+          <End Role="Groups" Type="SentinelModel.Store.Groups" Multiplicity="1" />
+          <End Role="UserGroups" Type="SentinelModel.Store.UserGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserGroups">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGroups_Users">
+          <End Role="Users" Type="SentinelModel.Store.Users" Multiplicity="1" />
+          <End Role="UserGroups" Type="SentinelModel.Store.UserGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserGroups">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfiles_Users">
+          <End Role="Users" Type="SentinelModel.Store.Users" Multiplicity="1" />
+          <End Role="UserProfiles" Type="SentinelModel.Store.UserProfiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfiles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRoles_Roles">
+          <End Role="Roles" Type="SentinelModel.Store.Roles" Multiplicity="1" />
+          <End Role="UserRoles" Type="SentinelModel.Store.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRoles_Users">
+          <End Role="Users" Type="SentinelModel.Store.Users" Multiplicity="1" />
+          <End Role="UserRoles" Type="SentinelModel.Store.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SentinelModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SentinelEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="ActivityTypes" EntityType="SentinelModel.ActivityType" />
+          <EntitySet Name="Applications" EntityType="SentinelModel.Application" />
+          <EntitySet Name="Groups" EntityType="SentinelModel.Group" />
+          <EntitySet Name="Roles" EntityType="SentinelModel.Role" />
+          <EntitySet Name="UserActivities" EntityType="SentinelModel.UserActivity" />
+          <EntitySet Name="UserApplications" EntityType="SentinelModel.UserApplication" />
+          <EntitySet Name="UserGroups" EntityType="SentinelModel.UserGroup" />
+          <EntitySet Name="UserProfiles" EntityType="SentinelModel.UserProfile" />
+          <EntitySet Name="Users" EntityType="SentinelModel.User" />
+          <AssociationSet Name="FK_UserActivities_ActivityTypes" Association="SentinelModel.FK_UserActivities_ActivityTypes">
+            <End Role="ActivityTypes" EntitySet="ActivityTypes" />
+            <End Role="UserActivities" EntitySet="UserActivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserActivities_Applications" Association="SentinelModel.FK_UserActivities_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="UserActivities" EntitySet="UserActivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserApplications_Applications" Association="SentinelModel.FK_UserApplications_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="UserApplications" EntitySet="UserApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGroups_Groups" Association="SentinelModel.FK_UserGroups_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="UserGroups" EntitySet="UserGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserActivities_Users" Association="SentinelModel.FK_UserActivities_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserActivities" EntitySet="UserActivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserApplications_Users" Association="SentinelModel.FK_UserApplications_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserApplications" EntitySet="UserApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGroups_Users" Association="SentinelModel.FK_UserGroups_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserGroups" EntitySet="UserGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfiles_Users" Association="SentinelModel.FK_UserProfiles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserProfiles" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <EntitySet Name="UserRoles" EntityType="SentinelModel.UserRole" />
+          <AssociationSet Name="FK_UserRoles_Roles" Association="SentinelModel.FK_UserRoles_Roles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRoles_Users" Association="SentinelModel.FK_UserRoles_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <EntitySet Name="BannedPasswords" EntityType="SentinelModel.BannedPassword" />
+        </EntityContainer>
+        <EntityType Name="ActivityType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IsActive" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicationKey" Type="String" MaxLength="32" Unicode="true" FixedLength="true" />
+          <Property Name="Added" Type="DateTime" Precision="3" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="DefaultTimeoutLength" Type="Int32" />
+          </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserActivity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+          <Property Name="ActivityTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ActivityTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" p1:StoreGeneratedPattern="Computed" />
+          </EntityType>
+        <EntityType Name="UserApplication">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+          </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IPAddress" Type="String" MaxLength="16" Unicode="true" FixedLength="true" />
+          <Property Name="LoginAttempts" Type="Int32" />
+          <Property Name="IsVerified" Type="Int32" />
+          <Property Name="Islocked" Type="Int32" />
+          <Property Name="IsLoggedIn" Type="Int32" />
+          <Property Name="LastModified" Type="DateTime" Precision="3" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <Property Name="LoginTime" Type="DateTime" Precision="3" />
+          <Property Name="Token" Type="String" MaxLength="32" Unicode="true" FixedLength="true" />
+          <Property Type="String" Name="SecurityPhrase" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SecurityImage" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="75" Unicode="true" FixedLength="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="12" Unicode="true" FixedLength="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Created" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" p1:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="UserRoles" Relationship="SentinelModel.FK_UserRoles_Users" FromRole="User" ToRole="UserRole" />
+          </EntityType>
+        <Association Name="FK_UserActivities_ActivityTypes">
+          <End Role="ActivityTypes" Type="SentinelModel.ActivityType" Multiplicity="1" />
+          <End Role="UserActivities" Type="SentinelModel.UserActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserActivities">
+              <PropertyRef Name="ActivityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserActivities_Applications">
+          <End Role="Applications" Type="SentinelModel.Application" Multiplicity="1" />
+          <End Role="UserActivities" Type="SentinelModel.UserActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserActivities">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserApplications_Applications">
+          <End Role="Applications" Type="SentinelModel.Application" Multiplicity="1" />
+          <End Role="UserApplications" Type="SentinelModel.UserApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserApplications">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGroups_Groups">
+          <End Role="Groups" Type="SentinelModel.Group" Multiplicity="1" />
+          <End Role="UserGroups" Type="SentinelModel.UserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserGroups">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserActivities_Users">
+          <End Role="Users" Type="SentinelModel.User" Multiplicity="1" />
+          <End Role="UserActivities" Type="SentinelModel.UserActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserActivities">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserApplications_Users">
+          <End Role="Users" Type="SentinelModel.User" Multiplicity="1" />
+          <End Role="UserApplications" Type="SentinelModel.UserApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserApplications">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGroups_Users">
+          <End Role="Users" Type="SentinelModel.User" Multiplicity="1" />
+          <End Role="UserGroups" Type="SentinelModel.UserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserGroups">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfiles_Users">
+          <End Role="Users" Type="SentinelModel.User" Multiplicity="1" />
+          <End Role="UserProfiles" Type="SentinelModel.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfiles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_UserRoles_Roles">
+          <End Type="SentinelModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="SentinelModel.UserRole" Role="UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRoles_Users">
+          <End Type="SentinelModel.User" Role="User" Multiplicity="1" />
+          <End Type="SentinelModel.UserRole" Role="UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BannedPassword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SentinelModelStoreContainer" CdmEntityContainer="SentinelEntities">
+          <EntitySetMapping Name="ActivityTypes">
+            <EntityTypeMapping TypeName="SentinelModel.ActivityType">
+              <MappingFragment StoreEntitySet="ActivityTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="SentinelModel.Application">
+              <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ApplicationKey" ColumnName="ApplicationKey" />
+                <ScalarProperty Name="Added" ColumnName="Added" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="DefaultTimeoutLength" ColumnName="DefaultTimeoutLength" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="SentinelModel.Group">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="SentinelModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserActivities">
+            <EntityTypeMapping TypeName="SentinelModel.UserActivity">
+              <MappingFragment StoreEntitySet="UserActivities">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="ActivityTypeId" ColumnName="ActivityTypeId" />
+                <ScalarProperty Name="ActivityTime" ColumnName="ActivityTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserApplications">
+            <EntityTypeMapping TypeName="SentinelModel.UserApplication">
+              <MappingFragment StoreEntitySet="UserApplications">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroups">
+            <EntityTypeMapping TypeName="SentinelModel.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroups">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="SentinelModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfiles">
+                <ScalarProperty Name="SecurityImage" ColumnName="SecurityImage" />
+                <ScalarProperty Name="SecurityPhrase" ColumnName="SecurityPhrase" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="LoginAttempts" ColumnName="LoginAttempts" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="Islocked" ColumnName="Islocked" />
+                <ScalarProperty Name="IsLoggedIn" ColumnName="IsLoggedIn" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SentinelModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="SentinelModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRoles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BannedPasswords">
+            <EntityTypeMapping TypeName="SentinelModel.BannedPassword">
+              <MappingFragment StoreEntitySet="BannedPasswords">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
